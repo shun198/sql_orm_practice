@@ -1,7 +1,7 @@
 #!/bin/sh
-poetry run python manage.py makemigrations --noinput
-poetry run python manage.py migrate --noinput
-poetry run python manage.py collectstatic --noinput
+poetry run python manage.py makemigrations
+poetry run python manage.py migrate
+poetry run python manage.py collectstatic
 
 if [ $DEBUG = "True" ]
 then
