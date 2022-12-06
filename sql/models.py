@@ -71,6 +71,7 @@ class Student(models.Model):
 class Club(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=50)
+    annual_budget = models.PositiveIntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='%(class)s_created_by')
 
@@ -78,10 +79,27 @@ class Club(models.Model):
 class Product(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=50)
-    category = models.CharField(max_length=50)
+    category = models.ForeignKey("Category", on_delete=models.DO_NOTHING)
     selling_price = models.PositiveIntegerField(default=0)
     cost_price = models.PositiveIntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     created_by = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='%(class)s_created_by')
     updated_by = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='%(class)s_updated_by')
+
+
+class CollaborationProduct(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=50)
+    category = models.ForeignKey("Category", on_delete=models.DO_NOTHING)
+    selling_price = models.PositiveIntegerField(default=0)
+    cost_price = models.PositiveIntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    created_by = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='%(class)s_created_by')
+    updated_by = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='%(class)s_updated_by')
+
+
+class Category(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=50)
