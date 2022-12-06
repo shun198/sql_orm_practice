@@ -148,3 +148,5 @@ SPECTACULAR_SETTINGS = {
     # api/schemaを表示しない
     'SERVE_INCLUDE_SCHEMA': False,
 }
+
+AUTH_USER_MODEL = "sql.User"
